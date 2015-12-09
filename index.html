@@ -1,0 +1,58 @@
+<html style="position: relative; height:100%; width:100%; overflow: hidden">
+    <head>
+        <title>Dear Leszek</title>
+        <style>*{margin:0;padding:0}</style>
+    </head>
+    <body style="position: relative; height:100%; width:100%; overflow: hidden">
+        <div id="text" style="font-size:100px; font-family: Arial, sans; margin-top: -50px; width:100%;position: absolute; top:50%; text-align: center">
+            Dear <span id="name" style="font-weight: bold; cursor: hand; cursor: pointer; border-bottom:3px #666 dashed">Lesdek</span>
+        </div>
+        <script type="text/javascript">
+            window.onresize = function() {
+                var text = document.getElementById("text");
+                var h = Math.min(150, window.outerWidth / 8);
+                text.style.fontSize = h + "px";
+                text.style.lineHeight = h*1.2 + "px";
+                text.style.height = h*1.2 + "px";
+                text.style.marginTop = -h*1.2/2 + "px";
+            }
+            window.onresize();
+            function disableSelection(target){
+                if (typeof target.onselectstart!="undefined") //For IE 
+                    target.onselectstart=function(){return false}
+                else if (typeof target.style.MozUserSelect!="undefined") //For Firefox
+                    target.style.MozUserSelect="none"
+                else //All other route (For Opera)
+                    target.onmousedown=function(){return false}
+                target.style.cursor = "default"
+            }
+            disableSelection(document.body)
+            window.onclick = function() {
+                if (window.getSelection)
+                    window.getSelection().removeAllRanges();
+                else if (document.selection)
+                    document.selection.empty();
+            }
+
+            window.onload = function() {
+                var C = "bcdfghklmnprstvwz";
+                var V = "aeiou";
+                
+                var name = document.getElementById("name");
+
+                function genName() {
+                    var new_name = "Le" + C[Math.floor(Math.random()*C.length)] + C[Math.floor(Math.random()*C.length)] + V[Math.floor(Math.random()*V.length)] + "k";
+                    console.log(new_name);
+                    name.innerHTML = new_name;
+                }
+
+                name.onclick = function() {
+                    genName();
+                }
+
+                genName();
+            }
+        </script>
+    </body>
+</html>
+

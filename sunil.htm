@@ -63,7 +63,7 @@
                 
                 var name = document.getElementById("name");
                 function genName() {
-                    var new_name = "S" + V[Math.floor(Math.random()*V.length)] + "n" + V[Math.floor(Math.random()*V.length)] + (Math.random() < 0.2 ? "" : C[Math.floor(Math.random()*C.length)]) + "l";
+                    var new_name = "S" + V[Math.floor(Math.random()*V.length)] + "n" + (Math.random() < 0.2 ? "" : C[Math.floor(Math.random()*C.length)]) + V[Math.floor(Math.random()*V.length)] + "l";
                     console.log(new_name);
                     name.innerHTML = new_name;
                 }
